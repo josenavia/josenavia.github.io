@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Simple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        input {
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Responde estas preguntas</h2>
+    <form id="myForm" action="https://hook.eu2.make.com/sjpt310ix67h523pplcv4d4mexwva79i" method="POST">
+        <label for="pregunta1">Pregunta 1: ¿qué sentencias quieres buscar?</label>
+        <input type="text" id="pregunta1" name="pregunta1" required>
+
+        <label for="pregunta2">Pregunta 2: ¿Qué quieres pregunar a las sentencias? (YYYYMMDD)</label>
+        <input type="text" id="pregunta2" name="pregunta2" required>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch(this.action, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => alert("¡Respuestas enviadas!"))
+            .catch(error => alert("Error al enviar: " + error));
+        });
+    </script>
+</body>
+</html>
